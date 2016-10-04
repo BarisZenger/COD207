@@ -1,0 +1,23 @@
+int x = 2;
+int c = 4;
+int v = x + c;
+int b = v + x;
+
+void setup(){
+  size(400,400);
+  println(v);
+  println(b);
+}
+
+void draw() {
+  background(#77C7E9);
+  rect(50,50,-50 + mouseX,-50 + mouseY);
+}
+
+void customFunction(){
+  println("test");
+}
+
+void keyPressed(){
+  customFunction();
+}
