@@ -1,0 +1,24 @@
+int y = 15;
+
+void setup(){
+  size(1000,500);
+  smooth();
+  noStroke();
+}
+
+void draw(){
+  background(#ACACAC);
+  
+  for(int i = 0; i < 30; i = i + 2){
+    fill(#000000);
+    rect(45*i,y,30,30);
+    fill(#E90000);
+    ellipse(45*i+60,y+15,30,30);
+  if(i % 15 == 0);{
+    fill(#000000);
+    rect(45*i,y+45,30,30);
+    fill(#E90000);
+    ellipse(45*i+60,y+60,30,30);
+}
+}
+}
