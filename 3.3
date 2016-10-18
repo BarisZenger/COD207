@@ -1,0 +1,13 @@
+void setup(){
+  size(500,500);
+}
+
+void draw(){
+  background(255);
+  noStroke();
+  translate(width*0.5,height*0.5);
+  fill(100);
+  rotate(radians(millis()));
+  rectMode(CENTER);
+  rect(0,0,200,200);
+}
