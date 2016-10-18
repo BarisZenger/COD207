@@ -1,0 +1,33 @@
+void setup(){
+  
+  size(800,800);
+}
+
+void draw(){
+  
+  background(255);
+  noCursor();
+  pushMatrix();
+  translate(mouseX-100,mouseY-115);
+  
+  rectMode(CENTER);
+  pushStyle();
+  fill(#1ABC9C);
+  rect(100,100,20,100);
+  popStyle();
+  
+  ellipse(100,70,60,60);
+  
+  pushStyle();
+  fill(#8E44AD);
+  ellipse(81,70,16,32);
+  ellipse(119,70,16,32);
+  popStyle();
+  
+  ellipse(81,70,16,16);
+  ellipse(119,70,16,16);
+  line(90,150,80,160);
+  line(110,150,120,160);
+  
+  popMatrix();
+}
