@@ -65,7 +65,7 @@ void draw(){
     text("START GAME", width * 0.5, height*0.5);
     popStyle();
 }
-
+}
     
 void keyPressed() {
 
