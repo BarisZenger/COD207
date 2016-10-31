@@ -29,11 +29,20 @@ void draw(){
   noCursor();
   x += (right - left) * speed;
   y += (down - up) * speed;
-  
-  if (x > width - 50) {
-  x = width - 50;
+    
+  if(x > 387) {
+    x = 387;
+} 
+  if(x < -187){
+    x = -187;
 }
-  
+  if(y > 324){
+    y = 324;
+}
+  if(y < -187){
+    y = -187;
+}
+
   pushMatrix();
   translate(x,y);
   ellipse(300,400,150,150);
@@ -59,7 +68,7 @@ void draw(){
   ellipse(375,300,25,25);
   ellipse(400,300,25,25);
   popMatrix();
-  
+
   pushStyle();
   fill(255, 50, 0);
   textFont(speedFont);
