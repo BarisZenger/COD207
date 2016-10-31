@@ -81,6 +81,9 @@ void draw(){
     textAlign(LEFT);
     text("Time: " + time, width - 325, 40);
     popStyle();
+  if(time > 0){
+    time = time - 1;
+}
 }
 }
 void keyReleased(){
