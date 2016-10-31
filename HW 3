@@ -30,6 +30,10 @@ void draw(){
   x += (right - left) * speed;
   y += (down - up) * speed;
   
+  if (x > width - 50) {
+  x = width - 50;
+}
+  
   pushMatrix();
   translate(x,y);
   ellipse(300,400,150,150);
@@ -82,7 +86,7 @@ void draw(){
     text("Time: " + time, width - 325, 40);
     popStyle();
   if(time > 0){
-    time = time - 1;
+    time = 60 - millis()/1000;
 }
 }
 }
