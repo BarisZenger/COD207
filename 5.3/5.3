@@ -1,0 +1,18 @@
+PImage picture;
+PImage picture2;
+
+void setup(){
+  size(1000, 600);
+  
+  picture = loadImage("test.jpg");
+  picture2 = loadImage("test2.jpg");
+}
+
+void draw(){
+  background(255);
+  
+  blendMode(SUBTRACT);
+  image(picture,mouseX - 500,0);
+  blendMode(MULTIPLY);
+  image(picture2,200,0);
+}
