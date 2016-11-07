@@ -1,15 +1,15 @@
 float x = 0;
 float y = 0;
 float speed = 1.0;
-float time = 60;
+float time = 0;
 float left = 0;
 float right = 0;
 float up = 0;
 float down = 0;
 float x1 = 0;
 float y1 = 0;
-float w1 = 40;
-float h1 = 40;
+float w1 = 0;
+float h1 = 0;
 
 PFont speedFont;
 PFont startFont;
