@@ -1,0 +1,36 @@
+int x = 500;
+
+PImage test;
+PImage test2;
+PImage test3;
+PImage test4;
+
+void setup() {  
+  size(800, 800);
+
+  test = loadImage("test.jpg");
+  test2 = loadImage("test2.jpg");
+  test3 = loadImage("test3.jpg");
+  test4 = loadImage("test4.jpg");
+}
+
+void draw() {
+  background(255);
+
+  pushMatrix();
+  translate(width*0.5, height*0.5);
+  imageMode(CENTER);
+  blendMode(DIFFERENCE);
+  for (int i = 0; i < 45; i = i + 1) {
+
+    rotate(radians(1));
+    image(test, 0, 0,x,x);
+    rotate(radians(30));
+    image(test2, 0, 0,x,x);
+    rotate(radians(45));
+    image(test3, 0, 0,x,x);
+    rotate(radians(60));
+    image(test4, 0, 0,x,x);
+}
+  popMatrix();
+}
