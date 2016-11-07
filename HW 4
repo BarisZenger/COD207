@@ -38,7 +38,6 @@ void setup(){
 void draw(){
   
   background(255);
-  //noCursor();
   x += (right - left) * speed;
   y += (down - up) * speed;
     
@@ -143,6 +142,7 @@ void mouseReleased(){
   if(buttonState == true){
   mouseState = true;
   gameStart = true;
+  noCursor();
 }
 }
 
