@@ -18,6 +18,7 @@ PFont timeFont;
 boolean gameStart=false;
 boolean failState=false;
 boolean buttonState=false;
+boolean mouseState=false;
 
 void setup(){
   
@@ -28,8 +29,8 @@ void setup(){
   startFont = createFont("BLACEB__.TTF", 32);
   textFont(startFont);
   
-  w1 = 120;
-  h1 = 30;
+  w1 = 240;
+  h1 = 60;
   x1 = width*0.5 - w1 * 0.5;
   y1 = height*0.5 - h1 *0.5;
 }
@@ -90,15 +91,15 @@ void draw(){
   
   pushMatrix();
   pushStyle();
-    if(buttonState == true) {
-    fill(0, 255, 0);
-  }
-  
+  if(buttonState == true) {
+  fill(0, 255, 0);
+}
   if(buttonState == false) {
     fill(255,0,0);
-  }
-  
+}
+  if(mouseState == false){
   rect( x1, y1, w1, h1);
+}
   popStyle();
   popMatrix();
 
@@ -106,9 +107,9 @@ void draw(){
     pushStyle();
     fill(0);
     textFont(startFont);
-    textSize(90);
+    textSize(35);
     textAlign(CENTER);
-    text("START GAME", width * 0.5, height*0.5);
+    text("START GAME", width * 0.5, height*0.5 + 15);
     popStyle();
 }  
   if (gameStart == true){
@@ -139,18 +140,20 @@ void draw(){
 }
 
 void mouseReleased(){
-  
+  if(buttonState == true){
+  mouseState=true;
+}
 }
 
 void mousePressed(){
   if (mouseX > x1 && mouseX < x1 + w1 && mouseY > y1 && mouseY < y1 + h1 && gameStart == false) {
-    println(" CLICK");
     buttonState = true;
     gameStart = true;
      } else {
-    println("NO CLICK");
+    if(gameStart == false){ 
     buttonState = false;
-  }
+}
+}
 }
   
 void keyReleased(){
