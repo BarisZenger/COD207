@@ -28,7 +28,6 @@ boolean gameStart=false;
 boolean failState=false;
 boolean buttonState=false;
 boolean mouseState=false;
-boolean resState = false;
 
 boolean scene1 = true;
 boolean scene2 = false;
@@ -168,7 +167,9 @@ void draw() {
       if (failState == true) {
         scene2 = false;
         scene3 = true;
-        resState = false;
+        buttonState = false;
+        mouseState = false;
+        gameStart = false;
       }
     }
   if (scene1 == true) {
@@ -196,13 +197,8 @@ void draw() {
       popStyle();
     }
   }
-  if (scene3 == true && resState == false) {
+  if (scene3 == true) {
     initGame();
-    scene2 = false;
-    buttonState = false;
-    mouseState = false;
-    gameStart = false;
-    failState = false;
     cursor();
     background(255);
     pushStyle();
@@ -223,7 +219,6 @@ void draw() {
     }
     if (mouseState == false) {
       rect( x1, y1, w1, h1);
-      resState = true;
     }
     popStyle();
     popMatrix();
@@ -241,6 +236,7 @@ void draw() {
 void mouseReleased() {
   if (buttonState == true) {
     mouseState = true;
+    scene1 = false;
     scene2 = true;
     scene3 = false;
     gameStart = true;
