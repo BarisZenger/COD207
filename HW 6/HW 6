@@ -2,6 +2,7 @@ float x = 0;
 float y = 0;
 float speed = 2.0;
 float time = 0;
+float t = 0;
 float left = 0;
 float right = 0;
 float up = 0;
@@ -54,11 +55,11 @@ void initGame() {
   velocityX = random(-5, 5);
   velocityY = random(-5, 5);
   locx = width*0.5;
-  locy = height*0.5; 
+  locy = height*0.5;
   
-  time = 60;
+  t = millis()/1000;
   speed = 2.0;
-
+  
   x = 0;
   y = 0;
 }
@@ -151,7 +152,7 @@ void draw() {
         text("Time: " + time, width - 325, 40);
         popStyle();
         if (time > -1) {
-          time = 60 - millis()/1000;
+          time = 60 - millis()/1000 + t;
         }
         if (time < 0) {
           failState = true;
