@@ -1,0 +1,343 @@
+float x = 0;
+float y = 0;
+float speed = 2.0;
+float time = 0;
+float t = 0;
+float left = 0;
+float right = 0;
+float up = 0;
+float down = 0;
+
+float x1 = 0;
+float y1 = 0;
+float w1 = 0;
+float h1 = 0;
+
+float locx = 0;
+float locy = 0;
+float velocityX = 0;
+float velocityY = 0;
+float locx2 = 0;
+float locy2 = 0;
+float velocityX2 = 0;
+float velocityY2 = 0;
+
+float charH = 288;
+float charW = 225;
+
+PFont speedFont;
+PFont startFont;
+PFont timeFont;
+
+boolean gameStart=false;
+boolean failState=false;
+boolean buttonState=false;
+boolean mouseState=false;
+
+boolean scene1 = true;
+boolean scene2 = false;
+boolean scene3 = false;
+
+void setup() {
+
+  size(800, 800);
+
+  timeFont = createFont("Halloween Heresy.otf", 32);
+  speedFont = createFont("DIN.otf", 32);
+  startFont = createFont("BLACEB__.TTF", 32);
+  textFont(startFont);
+
+  w1 = 240;
+  h1 = 60;
+  x1 = width*0.5 - w1 * 0.5;
+  y1 = height*0.5 - h1 *0.5;
+
+  initGame();
+}
+
+void initGame() {
+  velocityX = random(-5, 5);
+  velocityY = random(-5, 5);
+  locx = width*0.5;
+  locy = height*0.5;
+  velocityX2 = random(-5, 5);
+  velocityY2 = random(-5, 5);
+  locx2 = width*0.5;
+  locy2 = height*0.5;
+
+  t = millis()/1000;
+  speed = 2.0;
+
+  x = 0;
+  y = 0;
+}
+
+void draw() {
+
+  if (scene2 == true && scene3 == false) {
+
+    background(255);
+    x += (right - left) * speed;
+    y += (down - up) * speed;
+
+    if (locx-15 < 0 || locx+15 > width) {
+      velocityX = velocityX*-1;
+      if (velocityX < 0) {
+        velocityX = random(-10, -5);
+      } else {
+        velocityX = random(5, 10);
+      }
+    }
+
+    if (locy-15 < 0 || locy+15 > height) {
+      velocityY = velocityY*-1;
+      if (velocityY < 0) {
+        velocityY = random(-10, -5);
+      } else {
+        velocityY = random(5, 10);
+      }
+    }
+
+    if (locx2-15 < 0 || locx2+15 > width) {
+      velocityX2 = velocityX2*-1;
+      if (velocityX2 < 0) {
+        velocityX2 = random(-10, -5);
+      } else {
+        velocityX2 = random(5, 10);
+      }
+    }
+
+    if (locy2-15 < 0 || locy2+15 > height) {
+      velocityY2 = velocityY2*-1;
+      if (velocityY2 < 0) {
+        velocityY2 = random(-10, -5);
+      } else {
+        velocityY2 = random(5, 10);
+      }
+    }
+
+    if (gameStart == true) {  
+      locx = locx + velocityX;
+      locy = locy + velocityY;
+      locx2 = locx2 + velocityX2;
+      locy2 = locy2 + velocityY2;
+    }
+
+    if (x > 574) {
+      x = 574;
+    } 
+    if (x < 0) {
+      x = 0;
+    }
+    if (y > 511) {
+      y = 511;
+    }
+    if (y < 0) {
+      y = 0;
+    }
+
+    pushMatrix();
+    translate(x - 187, y - 187);
+    ellipse(300, 400, 150, 150);
+    ellipse(300, 300, 100, 100);
+    ellipse(300, 225, 75, 75);
+
+    pushStyle();
+    fill(#FFA600);
+    ellipse(300, 225, 15, 15);
+    popStyle();
+
+    pushStyle();
+    fill(#000000);
+    ellipse(285, 215, 15, 15);
+    ellipse(315, 215, 15, 15);
+    popStyle();
+
+    ellipse(250, 300, 25, 25);
+    ellipse(225, 300, 25, 25);
+    ellipse(200, 300, 25, 25);
+
+    ellipse(350, 300, 25, 25);
+    ellipse(375, 300, 25, 25);
+    ellipse(400, 300, 25, 25);
+    popMatrix();
+
+
+    if (gameStart == true) {
+      pushStyle();
+      fill(#000000);
+      ellipse(locx, locy, 30, 30);
+      ellipse(locx2, locy2, 30, 30);
+      popStyle();
+    }
+    if (x + charW > locx - 15 && x < locx + 15 && y + charH > locy - 15 && y < locy + 15) {
+      failState = true;
+    } else {
+      failState = false;
+    }
+    if (x + charW > locx2 - 15 && x < locx2 + 15 && y + charH > locy2 - 15 && y < locy2 + 15) {
+      failState = true;
+    }
+    pushStyle();
+    fill(255, 50, 0);
+    textFont(speedFont);
+    textSize(32);
+    textAlign(LEFT);
+    text("SPEED : " + speed, width - 180, 40);
+    popStyle();
+
+    if (gameStart == true) {
+      pushStyle();
+      fill(255, 50, 0);
+      textFont(timeFont);
+      textSize(32);
+      textAlign(LEFT);
+      text("Time: " + time, width - 325, 40);
+      popStyle();
+      if (time > -1) {
+        time = 60 - millis()/1000 + t;
+      }
+      if (time < 0) {
+        failState = true;
+      }
+    }
+    pushStyle();
+    noStroke();
+    noFill();
+    stroke(255, 0, 0);
+    rect(x, y, charW, charH);
+    popStyle();
+
+    if (failState == true) {
+      scene2 = false;
+      scene3 = true;
+      buttonState = false;
+      mouseState = false;
+      gameStart = false;
+    }
+  }
+  if (scene1 == true) {
+    pushMatrix();
+    pushStyle();
+    if (buttonState == true) {
+      fill(0, 255, 0);
+    }
+    if (buttonState == false) {
+      fill(255, 0, 0);
+    }
+    if (mouseState == false) {
+      rect( x1, y1, w1, h1);
+    }
+    popStyle();
+    popMatrix();
+
+    if (gameStart == false) {
+      pushStyle();
+      fill(0);
+      textFont(startFont);
+      textSize(35);
+      textAlign(CENTER);
+      text("START GAME", width * 0.5, height*0.5 + 15);
+      popStyle();
+    }
+  }
+  if (scene3 == true) {
+    initGame();
+    cursor();
+    background(255);
+    pushStyle();
+    fill(0);
+    textFont(startFont);
+    textSize(90);
+    textAlign(CENTER);
+    text("GAME OVER", width * 0.5, height*0.5 - 50);
+    popStyle();
+
+    pushMatrix();
+    pushStyle();
+    if (buttonState == true) {
+      fill(0, 255, 0);
+    }
+    if (buttonState == false) {
+      fill(255, 0, 0);
+    }
+    if (mouseState == false) {
+      rect( x1, y1, w1, h1);
+    }
+    popStyle();
+    popMatrix();
+
+    pushStyle();
+    fill(0);
+    textFont(startFont);
+    textSize(35);
+    textAlign(CENTER);
+    text("RESTART", width * 0.5, height*0.5 + 15);
+    popStyle();
+  }
+}
+
+void mouseReleased() {
+  if (buttonState == true) {
+    mouseState = true;
+    scene1 = false;
+    scene2 = true;
+    scene3 = false;
+    gameStart = true;
+    noCursor();
+  }
+}
+
+void mousePressed() {
+  if (mouseX > x1 && mouseX < x1 + w1 && mouseY > y1 && mouseY < y1 + h1 && gameStart == false) {
+    buttonState = true;
+  } else {
+    if (gameStart == false) { 
+      buttonState = false;
+    }
+  }
+}
+
+void keyReleased() {
+  if (key == 'a') {
+    left = 0;
+  }
+  if (key == 'd') {
+    right = 0;
+  }  
+  if (key == 'w') {
+    up = 0;
+  }
+  if (key == 's') {
+    down = 0;
+  }
+}
+
+void keyPressed() {
+  if (gameStart == true) {
+    pushMatrix();
+    if (keyCode == UP) {
+      speed = speed + 0.5;
+    }
+
+    if (keyCode == DOWN) {
+      if (speed > 1) {
+        speed = speed - 0.5;
+      }
+    }
+    popMatrix();
+
+    if (key == 'a') {
+      left = 1 + speed;
+    }
+    if (key == 'd') {
+      right = 1 + speed;
+    }  
+    if (key == 'w') {
+      up = 1 + speed;
+    }
+    if (key == 's') {
+      down = 1 + speed;
+    }
+  }
+}
