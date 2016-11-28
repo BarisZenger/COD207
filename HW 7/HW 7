@@ -88,6 +88,9 @@ void draw() {
 
   if (scene2 == true && scene3 == false) {
     
+    if (play.isPlaying() == false) {
+    play.rewind();
+    }
     start.pause();
     end.pause();
     play.play();
@@ -262,6 +265,9 @@ void draw() {
   }
   if (scene3 == true) {
     
+    if (end.isPlaying() == false) {
+    end.rewind();
+    }
     start.pause();
     play.pause();
     end.play();
