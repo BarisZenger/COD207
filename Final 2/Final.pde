@@ -121,7 +121,7 @@ void draw() {
       drops[i].fall();
       showScore();
 
-      if (mouseX+30 > drops[i].getr() && mouseX-30 < drops[i].getr()+70 && mouseY+40 > drops[i].gett() && mouseY-40 < drops[i].gett()+200) {
+      if (mouseX+35 > drops[i].getr() && mouseX-35 < drops[i].getr()+70 && mouseY+40 > drops[i].gett() && mouseY-40 < drops[i].gett()+200) {
         failState = true;
       }
     }
